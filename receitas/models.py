@@ -2,7 +2,7 @@ from django.db import models
 from datetime import datetime
 
 
-class receita(models.Model):
+class Receita(models.Model):
     
     # ========================= CAMPOS =========================
     # CharFields
@@ -15,7 +15,7 @@ class receita(models.Model):
     modo_preparo = models.TextField()
     
     # IntegerFields
-    tempo_preparo = models.IntegerField()
+    tempo_preparo = models.PositiveBigIntegerField()
     
     # DateTimeFields
     data_receita = models.DateTimeField(default=datetime.now, blank=True)

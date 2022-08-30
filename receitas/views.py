@@ -1,18 +1,14 @@
 # pylint: disable=import-error
 """Importação do Render"""
 from django.shortcuts import render
+from .models import Receita
 
 
 def index(request):
     """Cria a view da página Index"""
-    receitas = {
-        1:'Lasanha',
-        2:'Pizza',
-        3:'Sorvete',
-        4:'Sopa de Legumes'
-    }
+    receitas = Receita.objects.all()
     dados = {
-        'nome_das_receitas' : receitas
+        'receitas' : receitas
     }
     return render(request, 'index.html',dados)
 
