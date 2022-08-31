@@ -8,4 +8,4 @@ class ListandoReceitas(admin.ModelAdmin):
     search_fields = ('nome_receita',) # Cria um filtro com campos
     list_filter = ('categoria',) #Cria um filtro com categorias
     list_per_page = 20
-admin.site.register(Receita)
+admin.site.register(Receita, ListandoReceitas)
