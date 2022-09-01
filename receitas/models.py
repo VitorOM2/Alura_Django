@@ -1,3 +1,4 @@
+from distutils.command.upload import upload
 from django.db import models
 from datetime import datetime
 
@@ -23,6 +24,9 @@ class Receita(models.Model):
     
     # DateTimeFields
     data_receita = models.DateTimeField(default=datetime.now, blank=True)
+    
+    # ImageFields
+    imagem_receita = models.ImageField(upload_to='fotos/%d/%m/%Y/',blank=True)
 
     # BooleanFields
     publicada = models.BooleanField(default=False)
