@@ -6,7 +6,7 @@ from .models import Receita
 
 def index(request):
     """Cria a view da página Index"""
-    receitas = Receita.objects.filter(publicada=True)
+    receitas = Receita.objects.order_by('-data_receita').filter(publicada=True)
     dados = {
         'receitas' : receitas
     }
