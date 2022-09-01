@@ -23,3 +23,6 @@ class Receita(models.Model):
     
     # DateTimeFields
     data_receita = models.DateTimeField(default=datetime.now, blank=True)
+
+    # BooleanFields
+    publicada = models.BooleanField(default=False)
