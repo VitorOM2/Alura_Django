@@ -30,3 +30,6 @@ class Receita(models.Model):
 
     # BooleanFields
     publicada = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.nome_receita
