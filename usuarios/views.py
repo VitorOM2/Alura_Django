@@ -2,13 +2,13 @@ from django.shortcuts import render
 
 
 def cadastro(request):
-    render(request, 'cadastro.html')
+    return render(request, 'usuarios/cadastro.html')
 
 def dashboard(request):
-    render(request, 'dashboard.html')
+    return render(request, 'usuarios/dashboard.html')
 
 def login(request):
-    render(request, 'login.html')
+    return render(request, 'usuarios/login.html')
 
 def logout(request):
-    render(request, 'logout.html')
+    return render(request, 'usuarios/logout.html')
