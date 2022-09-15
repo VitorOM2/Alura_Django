@@ -12,7 +12,8 @@ def cadastro(request):
         print(f'\n ==================== Usuário Criado com Sucesso ==================== \n')
         
         return redirect('login')
-    return render(request, 'usuarios/cadastro.html')
+    else:
+        return render(request, 'usuarios/cadastro.html')
 
 def dashboard(request):
     return render(request, 'usuarios/dashboard.html')
