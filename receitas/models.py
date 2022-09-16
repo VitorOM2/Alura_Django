@@ -1,15 +1,15 @@
 from distutils.command.upload import upload
 from django.db import models
+from django.contrib.auth.models import User
 from datetime import datetime
-
-from pessoas.models import Pessoas
 
 
 class Receita(models.Model):
     
     # ========================= CAMPOS =========================
     # ForeingKey
-    pessoa = models.ForeignKey(Pessoas, on_delete=models.CASCADE)
+    pessoa = models.ForeignKey(User, on_delete=models.CASCADE)
+    
     # CharFields
     nome_receita = models.CharField(max_length=200)
     rendimento = models.CharField(max_length=100)
