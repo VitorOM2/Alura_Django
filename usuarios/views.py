@@ -5,6 +5,8 @@ from django.contrib.auth.models import User
 
 def cadastro(request):
     """Função com as validações do cadastro de usuários e que renderiza a view de cadastros"""
+    if  request.user.is_authenticated:
+        return redirect('index')
     if request.method == 'POST':      
         nome = request.POST['nome']
         email = request.POST['email']
@@ -38,10 +40,14 @@ def cadastro(request):
     return render(request, 'usuarios/cadastro.html')
 
 def dashboard(request):
-    return render(request, 'usuarios/dashboard.html')
+    if request.user.is_authenticated:
+        return render(request, 'usuarios/dashboard.html')
+    return redirect('index')
 
 def login(request):
     """Função com as validações do login de usuários e que renderiza a view de login"""
+    if  request.user.is_authenticated:
+        return redirect('index')
     if request.method == 'POST':
         email = request.POST['email']
         senha = request.POST['senha']
