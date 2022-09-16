@@ -70,3 +70,8 @@ def logout(request):
     auth.logout(request)
     print('\n ==================== Logout Realizado com Sucesso ==================== \n')
     return redirect('index')
+
+def criar_receitas(request):
+    if request.user.is_authenticated:
+        return render(request, 'usuarios/criar_receitas.html')
+    return redirect('index')
