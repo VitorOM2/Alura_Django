@@ -99,6 +99,11 @@ def criar_receitas(request):
     else:
         return render(request, 'usuarios/criar_receitas.html')
 
+def deletar_receita(request, receita_id):
+    receita = get_object_or_404(Receita, pk=receita_id)
+    receita.delete()
+    return redirect('dashboard')
+
 def campos_vazio(campo):
     return not campo.strip()
 
