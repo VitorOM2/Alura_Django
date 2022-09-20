@@ -1,3 +1,4 @@
+import re
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import auth, messages
 from django.contrib.auth.models import User
@@ -103,6 +104,29 @@ def deletar_receita(request, receita_id):
     receita = get_object_or_404(Receita, pk=receita_id)
     receita.delete()
     return redirect('dashboard')
+
+def editar_receita(request, receita_id):
+    receita = get_object_or_404(Receita, pk=receita_id)
+    receita_a_editar = { 'receita':receita }
+    return render(request, 'usuarios/editar_receita.html', receita_a_editar)
+
+def atualiza_receita(request):
+    
+    if request.method == 'POST':
+        receita_id = request.POST['receita_id']
+        receita = Receita.objects.get(pk=receita_id)
+        receita.nome_receita   = request.POST['nome_receita']
+        receita.ingredientes   = request.POST['ingredientes']
+        receita.modo_preparo   = request.POST['modo_preparo']
+        receita.tempo_preparo  = request.POST['tempo_preparo']
+        receita.rendimento     = request.POST['rendimento']
+        receita.categoria      = request.POST['categoria']
+        
+        if 'foto_receita' in request.FILES:
+            receita.foto_receita = request.FILES['foto_receita']
+            
+        receita.save()
+        return redirect('dashboard')
 
 def campos_vazio(campo):
     return not campo.strip()
