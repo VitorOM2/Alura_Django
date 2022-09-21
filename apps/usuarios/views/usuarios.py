@@ -5,7 +5,7 @@ from receitas.models import Receita
 
 
 def cadastro(request):
-    """Função com as validações do cadastro de usuários e que renderiza a view de cadastros"""
+    """ Realiza cadastro de usuários """
     if  request.user.is_authenticated:
         return redirect('index')
     if request.method == 'POST':      
@@ -45,6 +45,7 @@ def cadastro(request):
     return render(request, 'usuarios/cadastro.html')
 
 def dashboard(request):
+    """ Configura a tela de Dashboard do usuários """
     if request.user.is_authenticated:
         
         id = request.user.id
@@ -59,7 +60,7 @@ def dashboard(request):
     return redirect('index')
 
 def login(request):
-    """Função com as validações do login de usuários e que renderiza a view de login"""
+    """ Realiza login de usuários """
     if  request.user.is_authenticated:
         return redirect('index')
     if request.method == 'POST':
@@ -80,17 +81,22 @@ def login(request):
     return render(request, 'usuarios/login.html')
 
 def logout(request):
+    """ Realiza o logout de usuário """
     auth.logout(request)
     return redirect('index')
 
 def campos_vazio(campo):
+    """ Verifica se os campos estão cazios na hora de realizar login e cadastro """
     return not campo.strip()
 
 def senhas_diferentes(senha, senha2):
+    """ Verifica se na hora de cadastro se a senha e o confirmar senha são iguais """ 
     return senha != senha2
 
 def verificar_se_email_existe(emails):
+    """ Verifica se o email de usuário já está cadastrado """
     return User.objects.filter(email=emails).exists()
 
 def verificar_se_nome_existe(nome):
+    """ Verifica se o nome de usuário já está cadastrado """
     return User.objects.filter(username=nome).exists()
